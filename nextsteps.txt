@@ -1,0 +1,179 @@
+run npm i eslint prettier eslint-plugin-vue eslint-config-prettier --save-dev
+
+create eslintrc.js
+    module.exports = {
+        extends: ["plugin:vue/vue3-essential", "prettier"],
+        rules: {
+            // overide or add rule settings here
+            "vue/no-unused-vars": "error"
+        },
+    };
+
+create prettierrc.js
+    module.exports = {
+        semi: false,
+        tabwidth: 4,
+        useTabs: false,
+        printwidth: 80,
+        endOfLine: 'auto',
+        singleQuote: true,
+        trailingComma: "es5",
+        bracketSpacing: true,
+        arrowParems: "always",
+    };
+
+run npm i vue-router@4
+
+create router/index.js
+    import { createRouter, createWebHistory } from 'vue-router'
+    import Home from './components/Home'
+    import About from './components/About'
+
+    const routes = [
+        {
+            path: '/',
+            name: 'Home',
+            component: Home,
+        },
+        {
+            path: '/about',
+            name: 'About',
+            component: About,
+        },
+    ];
+
+    const router = createRouter ({
+        history: createWebHistory(),
+        routes,
+    });
+
+    export default router
+
+ In main.js,
+    import router from './router'    
+
+    -- createApp(App).use(router).mount('#app')
+
+
+component/Home.vue
+
+run npm i vuex@next
+
+create store/index.js
+    import { createStore } from vuex
+
+    import user from '../store/modules/user'
+
+    const store = createStore({
+        modules: {
+            user,
+        }
+    })
+
+    export default store
+
+create store/modules/user.js
+    export default {
+        state: () => ({}),
+
+        getters: (),
+
+        mutations: {},
+
+        actions: {},
+    }
+
+In main.js,
+    import store from './store'
+
+    -- createApp(App).use(router).use(store).mount('#app')
+
+edit store/modules/user.js
+    export default {
+        state: () => ({
+            name: 'Buster'
+        }),
+
+        getters: (),
+
+        mutations: {
+            SET_NAME(state, payload) {
+                state.name = payload
+            }
+        },
+
+        actions: {
+            saveName({ commit }, data) {
+                commit('SET_NAME', data)
+            }
+        },
+    }
+
+delete hello world components
+
+In Home.vue
+    <template>
+        <h1 class="mb-6 text-3xl font-extrabold">Home</h1>
+
+        <p class="mb-6">Name in store is: {{ name }}</p>
+
+        <input v-model="newName" type="text" class="p-2 border rounded border-gray-600" />
+
+        <button @click="saveName" class"p-2 text-white bg-indigo-600 rounded">Submit</button>
+    </template>
+
+    <script setup>
+        import { ref, computed } from 'vue'
+        import { useStore } from 'vuex'
+        import { useRouter } from 'vuerouter'
+
+        const store = useStore();
+        const router = useRouter()
+
+        const name = computed(() => {
+            return store.state.user.name
+        })
+
+        const newName = ref('')
+
+        function saveName() {
+            store.dispatch('saveName', newName.value)
+            newName.value = ''
+            router.push('/about')
+        }
+    </script>
+
+In App.vue,
+    <template>
+        <div class="p-4">
+            <router-view />
+        </div>
+    </template>
+
+create components/About.vue
+    <template>
+        <h1 class="mb-6 text-2xl font-bold">About {{ name }}</h1>
+
+        <p class="mb-6">Name in store is:</p>
+
+        <input v-model="newName" type="text" class="p-2 border rounded border-gray-600" />
+
+        <button @click="saveName" class="p-2 text-white bg-indigo-600 rounded">Submit</button>
+    </template>
+
+    <script setup>
+        import { ref, computed } from 'vue'
+        import { useStore } from 'vuex'
+        
+        const store = useStore()
+
+        const name = computed(() => {
+            return store.state.user.name
+        })
+    </script>
+
+run npm install --save-dev @iconify/vue
+
+import { Icon } from '@iconify/vue'
+
+<Icon icon="mdi-light:home" height="40" color="text-skin-base" />
