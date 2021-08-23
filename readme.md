@@ -6,7 +6,7 @@ This is a blog page designed with vite + vue 3 + tailwind css
 
    Design Link
    <!-- * [Lo-fi link](https://www.figma.com/file/aD1DdXvw6wavwHjo5MNN9m/STOCKA?node-id=0%3A1) -->
-   * [Hi-fi link](#)
+   * [Hi-fi link](https://www.figma.com/file/DtZ4fCr1PmXXVrVuaMLHHG/Makala---Blog?node-id=0%3A1)
    <!-- * [User-flow and prototype link](https://www.figma.com/proto/aD1DdXvw6wavwHjo5MNN9m/STOCKA?node-id=1349%3A355&scaling=scale-down&page-id=535%3A0) -->
 
 
