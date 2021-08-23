@@ -70,5 +70,5 @@ The folder is structured like below
 
 ## Routes and Usage
 ### Environments
-<p>Local URL: http://localhost:5002</p>
+<p>Local URL: http://localhost:3000</p>
 <p></p>Production URL: </p>
