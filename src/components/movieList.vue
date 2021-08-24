@@ -3,7 +3,7 @@
     <h1 class="mb-6 text-2xl font-bold">{{ name }}'s Movie Store</h1>
 
     <ul>
-        <li v-for="movie in movies" :key="movie.id">
+        <li v-for="movie in newmovies" :key="movie.id">
             {{ movie.title }}
             <button v-if="status.value" class="m-2 bg-red-600 px-4 py-2 rounded text-white" @click="onRemoveMovieClick(movie.id)">x</button>
         </li>
@@ -29,14 +29,22 @@
         return store.getters.getLoginStatus
     })
 
-    const movies = computed(() => {
-        return store.state.movies.moviecollection
+    const newmovies = computed(() => {
+        if (store.getters.getLoginStatus.value) {
+            // console.log("allMovies", store.state.movies.moviecollection);
+            return store.state.movies.moviecollection
+        }
+
+        const movies = store.state.movies.moviecollection.filter(movie => movie.requiresLogin === false)
+        // console.log("the movies", movies);
+        return movies
     })
 
     const onAddMovieClick = () => {
         store.dispatch(actionTypes.addMovie, {
             id: store.getters.getNumberOfMovies.value + 1,
-            title: `Movies ${store.getters.getNumberOfMovies.value + 1}`
+            title: `Movies ${store.getters.getNumberOfMovies.value + 1}`,
+            requiresLogin: false
         })
     }
 

@@ -33,6 +33,19 @@ export default {
             return computed(() => {
                 return state.moviecollection.length
             })
+        },
+        getMovies: (state, getters) => {
+            return computed(() => {
+                console.log(getters.getLoginStatus.value)
+                if (getters.getLoginStatus.value) {
+                    console.log("allMovies", state.moviecollection);
+                    return state.moviecollection
+                }
+
+                const movies = state.moviecollection.filter(movie => movie.requiresLogin === false)
+                console.log("the movies", movies);
+                return state.moviecollection.filter(movie => movie.requiresLogin === false)
+            })
         }
     },
 
