@@ -5,10 +5,6 @@
     <p class="mb-6">Name in store is: {{ name }}</p>
 
     <p class="mb-6">I have {{ numberOfMovies }} movies in my store!</p>
-
-    <input v-model="newName" type="text" class="p-2 border rounded border-gray-600" />
-
-    <button class="ml-3 p-2 text-white bg-indigo-600 rounded" @click="saveName">Submit</button>
 </template>
 
 <script setup>

@@ -1,6 +1,9 @@
 <template>
-<h2>{{ fullname }} | Logged in: {{ status }} </h2>
-    <form @submit.prevent="onSubmit()">
+    <h2>{{ fullname.value }} | Logged in: {{ status.value }} | Loading state: {{ loadingState.value }} </h2>
+
+    <button v-if="status.value" class="m-2 bg-yellow-700 px-4 py-2 rounded text-white" @click="onLogout">Logout</button>
+
+    <form v-if="!status.value" @submit.prevent="onSubmit()">
         <label class="m-2">
             Email
             <input v-model="userForm.email" class=" ml-2 border p-2 rounded" type="email" />
@@ -9,7 +12,7 @@
             Password
             <input v-model="userForm.password" class=" ml-2 border p-2 rounded" type="password" />
         </label>
-        <button type="submit" class="m-2 bg-green-600 px-4 py-2 rounded text-white">Submit</button>
+        <button :disabled="loadingState.value" type="submit" class="m-2 bg-green-600 px-4 py-2 rounded text-white">{{ loadingState.value ? "Loading..." : "Submit" }}</button>
     </form>
 </template>
 
@@ -34,9 +37,20 @@
         return store.getters.getLoginStatus
     })
 
+    const loadingState = computed(() => {
+        return store.getters.getLoadingState
+    })
+
     const onSubmit = () => {
         // console.log(userForm.value);
-        login().then(data => store.dispatch(actionTypes.updateUserData, data))
+        store.dispatch(actionTypes.updateLoading, true)
+        login()
+        .then(data => store.dispatch(actionTypes.updateUserData, data))
+        .finally(() => store.dispatch(actionTypes.updateLoading, false))
+    }
+
+    const onLogout = () => {
+        store.dispatch(actionTypes.updateUserIsLoggedIn, false)
     }
 </script>
 

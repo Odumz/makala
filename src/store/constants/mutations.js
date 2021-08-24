@@ -1,3 +1,6 @@
 export const SET_NAME = 'SET_NAME';
 export const SET_OTHER_NAMES = 'SET_OTHER_NAMES';
 export const SET_LOGGEDIN_STATUS = 'SET_LOGGEDIN_STATUS';
+export const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
+export const ADD_MOVIE = 'ADD_MOVIE';
+export const REMOVE_MOVIE = 'REMOVE_MOVIE';

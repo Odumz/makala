@@ -5,5 +5,5 @@ export const login = async () =>
                 firstname: "John",
                 lastname: "Doe"
             });
-        }, 1500);
+        }, 4500);
     });
