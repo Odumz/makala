@@ -1,0 +1,3 @@
+export const SET_NAME = 'SET_NAME';
+export const SET_OTHER_NAMES = 'SET_OTHER_NAMES';
+export const SET_LOGGEDIN_STATUS = 'SET_LOGGEDIN_STATUS';

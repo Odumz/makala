@@ -13,6 +13,7 @@
     import { ref, computed } from 'vue'
     import { useStore } from 'vuex'
     import { useRouter } from 'vue-router'
+    import * as actionTypes from '../store/constants/actions'
 
     const store = useStore();
     const router = useRouter()
@@ -24,7 +25,7 @@
     const newName = ref('')
 
     function saveName() {
-        store.dispatch('saveName', newName.value)
+        store.dispatch(actionTypes.saveName, newName.value)
         newName.value = ''
         // router.push('/about')
     }

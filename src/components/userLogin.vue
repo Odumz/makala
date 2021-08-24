@@ -17,6 +17,7 @@
     import { ref, computed } from 'vue'
     import { login } from '../api'
     import { useStore } from 'vuex'
+    import * as actionTypes from '../store/constants/actions'
 
     const store = useStore()
 
@@ -35,7 +36,7 @@
 
     const onSubmit = () => {
         // console.log(userForm.value);
-        login().then(data => store.dispatch('updateUserData', data))
+        login().then(data => store.dispatch(actionTypes.updateUserData, data))
     }
 </script>
 

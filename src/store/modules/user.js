@@ -1,4 +1,6 @@
 import { computed } from 'vue'
+import * as mutationTypes from '../constants/mutations'
+import * as actionTypes from '../constants/actions'
 
 export default {
     state: () => ({
@@ -22,28 +24,28 @@ export default {
     },
 
     mutations: {
-        SET_NAME(state, payload) {
+        [mutationTypes.SET_NAME](state, payload) {
             state.name = payload
         },
-        SET_OTHER_NAMES(state, { firstname, lastname }) {
+        [mutationTypes.SET_OTHER_NAMES](state, { firstname, lastname }) {
             state.firstname = firstname
             state.lastname = lastname
         },
-        SET_LOGGEDIN_STATUS(state, payload) {
+        [mutationTypes.SET_LOGGEDIN_STATUS](state, payload) {
             state.isLoggedIn = payload
         }
     },
 
     actions: {
-        saveName({ commit }, data) {
+        [actionTypes.saveName]({ commit }, data) {
             commit('SET_NAME', data)
         },
-        async updateUserData({ dispatch, commit }, data) {
+        async [actionTypes.updateUserData]({ dispatch, commit }, data) {
             await commit('SET_OTHER_NAMES', data)
             await dispatch('updateUserIsLoggedIn', true)
             // await commit('SET_LOGGEDIN_STATUS', true)
         },
-        updateUserIsLoggedIn({ commit }, data) {
+        [actionTypes.updateUserIsLoggedIn]({ commit }, data) {
             commit('SET_LOGGEDIN_STATUS', data)
         }
     },
