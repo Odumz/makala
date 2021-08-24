@@ -26,9 +26,9 @@ export default {
 
         <sidebar-link to="/" icon="codicon:home">Home</sidebar-link>
         <sidebar-link to="/dashboard" icon="lucide:layout-dashboard">Dashboard</sidebar-link>
-        <sidebar-link to="/analytics" icon="tabler:presentation-analytics">Analytics</sidebar-link>
+        <sidebar-link to="/movies" icon="tabler:presentation-analytics">Movies</sidebar-link>
         <sidebar-link to="/about" icon="clarity:id-badge-line">About</sidebar-link>
-        <sidebar-link to="/contact" icon="fluent:contact-card-20-regular">Contact</sidebar-link>
+        <sidebar-link to="/login" icon="fluent:contact-card-20-regular">Login</sidebar-link>
 
         <span class="collapsed-icon" :class="{ 'rotate-180' : collapsed }" @click="toggleSidebar">
             <Icon icon="feather:menu" height="30" />
