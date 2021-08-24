@@ -13,6 +13,11 @@ export default {
             return computed(() => {
                 return `${state.firstname} ${state.lastname}`
             })
+        },
+        getLoginStatus: (state) => {
+            return computed(() => {
+                return state.isLoggedIn
+            })
         }
     },
 
@@ -24,7 +29,7 @@ export default {
             state.firstname = firstname
             state.lastname = lastname
         },
-        SET_lOGGEDIN_STATUS(state, payload) {
+        SET_LOGGEDIN_STATUS(state, payload) {
             state.isLoggedIn = payload
         }
     },
@@ -35,7 +40,8 @@ export default {
         },
         async updateUserData({ dispatch, commit }, data) {
             await commit('SET_OTHER_NAMES', data)
-            await dispatch('user/updateUserIsLoggedIn(true)')
+            await dispatch('updateUserIsLoggedIn', true)
+            // await commit('SET_LOGGEDIN_STATUS', true)
         },
         updateUserIsLoggedIn({ commit }, data) {
             commit('SET_LOGGEDIN_STATUS', data)

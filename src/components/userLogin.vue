@@ -1,5 +1,5 @@
 <template>
-<h2>{{ fullname }}</h2>
+<h2>{{ fullname }} | Logged in: {{ status }} </h2>
     <form @submit.prevent="onSubmit()">
         <label class="m-2">
             Email
@@ -27,6 +27,10 @@
 
     const fullname = computed(() => {
         return store.getters.getFullname
+    })
+
+    const status = computed(() => {
+        return store.getters.getLoginStatus
     })
 
     const onSubmit = () => {
