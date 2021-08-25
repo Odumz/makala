@@ -51,7 +51,8 @@
 
     const onLogout = () => {
         store.dispatch(actionTypes.updateUserIsLoggedIn, false)
-        localStorage.removeItem('isLoggedIn')
+        localStorage.clear()
+        location.reload()
     }
 </script>
 

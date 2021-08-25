@@ -4,9 +4,11 @@
 
     <p class="mb-6">Name in store is: {{ name }}</p>
 
-    <input v-model="newName" type="text" class="p-2 border rounded border-gray-600" />
+    <div v-if="status.value">
+        <input v-model="newName" type="text" class="p-2 border rounded border-gray-600" />
 
-    <button class="ml-3 p-2 text-white bg-indigo-600 rounded" @click="saveName">Submit</button>
+        <button class="ml-3 p-2 text-white bg-indigo-600 rounded" @click="saveName">Submit</button>
+    </div>
 </template>
 
 <script setup>
@@ -20,6 +22,10 @@
 
     const name = computed(() => {
         return store.state.user.name
+    })
+    
+    const status = computed(() => {
+        return store.getters.getLoginStatus
     })
 
     const newName = ref('')
