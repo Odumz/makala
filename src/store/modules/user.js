@@ -4,10 +4,10 @@ import * as actionTypes from '../constants/actions'
 
 export default {
     state: () => ({
-        name: 'Buster',
+        name: localStorage.getItem('name'),
         firstname: '',
         lastname: '',
-        isLoggedIn: false,
+        isLoggedIn: localStorage.getItem('isLoggedIn') || false,
         loading: false
     }),
 
@@ -32,14 +32,14 @@ export default {
 
     mutations: {
         [mutationTypes.SET_NAME](state, payload) {
-            state.name = payload
+            localStorage.setItem('name', state.name = payload)
         },
         [mutationTypes.SET_OTHER_NAMES](state, { firstname, lastname }) {
             state.firstname = firstname
             state.lastname = lastname
         },
         [mutationTypes.SET_LOGGEDIN_STATUS](state, payload) {
-            state.isLoggedIn = payload
+            localStorage.setItem('isLoggedIn', state.isLoggedIn = payload)
         },
         [mutationTypes.SET_LOADING_STATUS](state, payload) {
             state.loading = payload
