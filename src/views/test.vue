@@ -39,17 +39,17 @@
         store.dispatch('changeTheme', newTheme.value)
     }
 
-    const keyPress = (e) => {
-        if (e.key === 'd') {
-            this.toggle()
-        } else if (e.key === 's') {
-            newTheme = 'theme-swiss'
-        } else if (e.key === 'n') {
-            newTheme = 'theme-neon'
-        } else if (e.key === 'r') {
-            newTheme = 'theme-default'
-        }
-    }
+    // const keyPress = (e) => {
+    //     if (e.key === 'd') {
+    //         this.toggle()
+    //     } else if (e.key === 's') {
+    //         newTheme = 'theme-swiss'
+    //     } else if (e.key === 'n') {
+    //         newTheme = 'theme-neon'
+    //     } else if (e.key === 'r') {
+    //         newTheme = 'theme-default'
+    //     }
+    // }
     const toggle = () => {
         if (this.mode === "dark") {
             this.mode = "light"
